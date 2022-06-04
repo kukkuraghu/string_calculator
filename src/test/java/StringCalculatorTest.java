@@ -2,6 +2,7 @@ import com.nedumpurath.StringCalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
@@ -30,5 +31,10 @@ public class StringCalculatorTest {
     @Test
     void addUpToTwoNumberInvokedWithIntegersSurroundedWithWhiteSpaces() {
         assertEquals(7, StringCalculator.add(" 3  , 4   "), "when the input string has two integers with whitespaces around them and separated by comma, StringCalculator.add should return the sum of the two integers - it should ignore whitespaces");
+    }
+
+    @Test
+    void addUpToTwoNumberInvokedWithNonIntegers() {
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add(" 3.4, 4.5"), "when the input string has non integer numbers, StringCalculator.add should throw NumberFormatException");
     }
 }
