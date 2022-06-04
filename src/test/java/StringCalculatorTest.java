@@ -37,4 +37,11 @@ public class StringCalculatorTest {
     void addUpToTwoNumberInvokedWithNonIntegers() {
         assertThrows(NumberFormatException.class, () -> StringCalculator.add(" 3.4, 4.5"), "when the input string has non integer numbers, StringCalculator.add should throw NumberFormatException");
     }
+
+    @Test
+    void addUpToTwoNumberInvokedWithNonNumbers() {
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add(" 3, xyz"), "when the input string has non numbers, StringCalculator.add should throw NumberFormatException");
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add(" abc, 5"), "when the input string has non numbers, StringCalculator.add should throw NumberFormatException");
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add(" a, a"), "when the input string has non numbers, StringCalculator.add should throw NumberFormatException");
+    }
 }
