@@ -17,6 +17,13 @@ public class StringCalculatorTest {
 
     @Test
     void addUpToTwoNumberInvokedWithEmptyString() {
-        assertEquals(0, StringCalculator.add(""), "when the input string is empty StringCalculator.add should return 0");
+        assertEquals(0, StringCalculator.add(""), "when the input string is empty, StringCalculator.add should return 0");
+    }
+
+    @Test
+    void addUpToTwoNumberInvokedWithBlankString() {
+        assertEquals(0, StringCalculator.add("   "), "when the input string is blank, StringCalculator.add should return 0");
+        assertEquals(0, StringCalculator.add("  \t "), "when the input string is blank, StringCalculator.add should return 0");
+        assertEquals(0, StringCalculator.add(" \t \n \r  "), "when the input string is blank, StringCalculator.add should return 0");
     }
 }
