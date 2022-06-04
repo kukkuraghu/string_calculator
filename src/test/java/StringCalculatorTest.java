@@ -48,6 +48,6 @@ public class StringCalculatorTest {
     @Test
     void addUpToTwoNumberInvokedWithIntegersWhoseSumExceedsMaxInt() {
         assertThrows(ArithmeticException.class, () -> StringCalculator.add("2, 2147483647"), "if the input string has integers whose sum  is not in the integers range supported, the Add method should throw ArithmeticException");
-        assertThrows(ArithmeticException.class, () -> StringCalculator.add("2147483648"), "if the input string has integers whose sum  is not in the integers range supported, the Add method should throw ArithmeticException");
+        assertThrows(ArithmeticException.class, () -> StringCalculator.add("2147483648"), "if the input string has integers whose sum  is not in the integers range supported or has integers who are outside the integer range, the Add method should throw ArithmeticException");
     }
 }
