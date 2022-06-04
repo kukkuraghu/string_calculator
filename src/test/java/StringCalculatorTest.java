@@ -66,4 +66,9 @@ public class StringCalculatorTest {
         assertThrows(ArithmeticException.class, () -> StringCalculator.add("-2147483649, -3"), "if the input string has integers whose sum(or any input integer) is not in the integers range supported, the Add method should throw ArithmeticException");
         assertThrows(ArithmeticException.class, () -> StringCalculator.add("-2147483649"), "if the input string has integers whose sum(or any input integer) is not in the integers range supported or has integers who are outside the integer range, the Add method should throw ArithmeticException");
     }
+
+    @Test
+    void addToSumMoreThanTwoNumbers() {
+        assertEquals(10, StringCalculator.add("2,3,5"), "when the input string has more than two integers separated by comma, StringCalculator.add should return the sum of all the integers");
+    }
 }
