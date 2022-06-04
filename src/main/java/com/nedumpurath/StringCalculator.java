@@ -11,10 +11,7 @@ public class StringCalculator {
         var firstNumberString = numberStrings[0].strip();
         var firstNumberBigInteger = new BigInteger(firstNumberString); //if firstNumberString is not an integer, this will throw NumberFormatException
         var secondNumberString = "";
-        if (firstNumberBigInteger.compareTo(new BigInteger(String.valueOf(Integer.MAX_VALUE))) > 0 ) {
-            throw new ArithmeticException();
-        }
-        if (firstNumberBigInteger.compareTo(new BigInteger(String.valueOf(Integer.MIN_VALUE))) < 0 ) {
+        if (moreThanMaxInt(firstNumberBigInteger) || lessThanMinInt(firstNumberBigInteger)) {
             throw new ArithmeticException();
         }
         if (numberStrings.length == 1) {
@@ -22,12 +19,17 @@ public class StringCalculator {
         }
         secondNumberString = numberStrings[1].strip();
         var secondNumberBigInteger = new BigInteger(secondNumberString); //if secondNumberString is not an integer, this will throw NumberFormatException
-        if (secondNumberBigInteger.compareTo(new BigInteger(String.valueOf(Integer.MAX_VALUE))) > 0 ) {
-            throw new ArithmeticException();
-        }
-        if (secondNumberBigInteger.compareTo(new BigInteger(String.valueOf(Integer.MIN_VALUE))) < 0 ) {
+        if (moreThanMaxInt(secondNumberBigInteger) || lessThanMinInt(secondNumberBigInteger)) {
             throw new ArithmeticException();
         }
         return Math.addExact(parseInt(firstNumberString), parseInt(secondNumberString));
+    }
+
+    private  static Boolean moreThanMaxInt(BigInteger number) {
+        return number.compareTo(new BigInteger(String.valueOf(Integer.MAX_VALUE))) > 0;
+    }
+
+    private static Boolean lessThanMinInt(BigInteger number) {
+        return number.compareTo(new BigInteger(String.valueOf(Integer.MIN_VALUE))) < 0;
     }
 }
