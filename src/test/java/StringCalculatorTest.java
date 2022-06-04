@@ -44,4 +44,10 @@ public class StringCalculatorTest {
         assertThrows(NumberFormatException.class, () -> StringCalculator.add(" abc, 5"), "when the input string has non numbers, StringCalculator.add should throw NumberFormatException");
         assertThrows(NumberFormatException.class, () -> StringCalculator.add(" a, a"), "when the input string has non numbers, StringCalculator.add should throw NumberFormatException");
     }
+
+    @Test
+    void addUpToTwoNumberInvokedWithIntegersWhoseSumExceedsMaxInt() {
+        assertThrows(ArithmeticException.class, () -> StringCalculator.add("2, 2147483647"), "if the input string has integers whose sum  is not in the integers range supported, the Add method should throw ArithmeticException");
+        assertThrows(ArithmeticException.class, () -> StringCalculator.add("2147483648"), "if the input string has integers whose sum  is not in the integers range supported, the Add method should throw ArithmeticException");
+    }
 }
