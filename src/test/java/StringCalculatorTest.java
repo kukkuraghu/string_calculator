@@ -9,4 +9,9 @@ public class StringCalculatorTest {
     void addUpToTwoNumber() {
         assertEquals(5, StringCalculator.add("2,3"), "when the input string has two integers separated comma, StringCalculator.add should return the sum of the two numbers");
     }
+
+    @Test
+    void addUpToTwoNumberInvokedWithSingleNumber() {
+        assertEquals(6, StringCalculator.add("6"), "when the input string has only one integer StringCalculator.add should return the single integer in the input string");
+    }
 }
