@@ -9,7 +9,8 @@ public class StringCalculator {
     public static int add(String textInput) {
         if (textInput.isBlank()) return 0;
 
-        var componentList = List.of(textInput.split("[,\n]"));
+        var componentList = List.of(textInput.split("[,\n]", -1));//don't eliminate trailing empty strings - set the limit -1
+
         return componentList.stream().map(component -> {
             //strip the surrounding whitespaces from each component
             var strippedComponent = component.strip();
