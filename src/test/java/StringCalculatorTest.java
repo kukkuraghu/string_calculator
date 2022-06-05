@@ -100,4 +100,12 @@ public class StringCalculatorTest {
     void addToSumNumbersWithSeparatorDefinition() {
         assertEquals(10, StringCalculator.add("//;\n2;3;5"), "when the input string has separator definition, StringCalculator.add should consider the separator in the definition");
     }
+
+    @Test
+    void addToSumNumbersWithSeparatorDefinitionEdgeCases() {
+        assertEquals(0, StringCalculator.add("//;\n"), "when the input string has separator definition and the numbers String is empty, StringCalculator.add should return 0");
+        assertEquals(0, StringCalculator.add("//;\n   "), "when the input string has separator definition and the numbers String is blank, StringCalculator.add should return 0");
+        assertEquals(0, StringCalculator.add("//;\n  \t "), "when the input string has separator definition and the numbers String is blank, StringCalculator.add should return 0");
+        assertEquals(0, StringCalculator.add("//;\n  \n "), "when the input string has separator definition and the numbers String is blank, StringCalculator.add should return 0");
+    }
 }
