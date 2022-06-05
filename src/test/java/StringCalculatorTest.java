@@ -81,4 +81,15 @@ public class StringCalculatorTest {
         assertEquals(8, StringCalculator.add("2\n 6"), "when the input string has two integers separated by comma or newline, StringCalculator.add should return the sum of both the integers");
         assertEquals(170, StringCalculator.add("2,3,5, 100 \n  50 , \t 10"), "when the input string has more than two integers separated by comma or newline, StringCalculator.add should return the sum of all the integers");
     }
+
+    @Test
+    void addToSumNumbersSomeEdgeCases() {
+        assertEquals(0, StringCalculator.add(","), "when the input string has only a separator and no integers, StringCalculator.add should return the sum as 0");
+        assertEquals(0, StringCalculator.add("\n"), "when the input string has only a separator and no integers, StringCalculator.add should return the sum as 0");
+        assertEquals(0, StringCalculator.add(" , "), "when the input string has only a separator and no integers, StringCalculator.add should return the sum as 0");
+        assertEquals(2, StringCalculator.add(" , 2"), "when the input string starts with a separator(with or without whitespaces around it), StringCalculator.add should sum the other integers in the input string");
+        assertEquals(3, StringCalculator.add("3\n"), "when the input string ends with a separator(with or without whitespaces around it), StringCalculator.add should sum the other integers in the input string");
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add("3,\n"), "when the input string has consecutive separators(without an integer between them), StringCalculator.add should throw NumberFormatException");
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add("\n,5"), "when the input string has consecutive separators(without an integer between them), StringCalculator.add should throw NumberFormatException");
+    }
 }
