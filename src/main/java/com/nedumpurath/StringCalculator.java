@@ -11,13 +11,9 @@ public class StringCalculator {
         var delimiter = "[,|\n]";
         var numbersString = textInput;
         if (startsWithDelimiterDefinition(textInput)) {
-            var pattern = Pattern.compile("//(.)\n(.*)");
-            var matchedGroups = pattern.matcher(textInput);
-            if (matchedGroups.find()) {
-                delimiter = matchedGroups.group(1);
-                numbersString = matchedGroups.group(2);
-            }
-
+            var patternAndNumbersString = getPatternAndNumbersString(textInput);
+            delimiter = patternAndNumbersString[0];
+            numbersString = patternAndNumbersString[1];
         }
 
         if (numbersString.isBlank()) return 0;
@@ -51,5 +47,17 @@ public class StringCalculator {
 
     private static Boolean startsWithDelimiterDefinition(String inputString) {
         return inputString.matches("//.\n.*");
+    }
+
+    private static String[] getPatternAndNumbersString(String inputString) {
+        String[] patternAndInputString = new String[2];
+        var pattern = Pattern.compile("//(.)\n(.*)");
+        var matchedGroups = pattern.matcher(inputString);
+        if (matchedGroups.find()) {
+            patternAndInputString[0] = matchedGroups.group(1);//delimiter
+            patternAndInputString[1] = matchedGroups.group(2);//numbersString
+            return patternAndInputString;
+        }
+        return null;
     }
 }
