@@ -46,12 +46,12 @@ public class StringCalculator {
     }
 
     private static Boolean startsWithDelimiterDefinition(String inputString) {
-        return inputString.matches("//.\n(?s).*");
+        return inputString.matches("//(?s).\n(?s).*");
     }
 
     private static String[] getPatternAndNumbersString(String inputString) {
         String[] patternAndInputString = new String[2];
-        var pattern = Pattern.compile("//(.)\n((?s).*)");
+        var pattern = Pattern.compile("//((?s).)\n((?s).*)");
         var matchedGroups = pattern.matcher(inputString);
         if (matchedGroups.find()) {
             patternAndInputString[0] = matchedGroups.group(1);//delimiter
