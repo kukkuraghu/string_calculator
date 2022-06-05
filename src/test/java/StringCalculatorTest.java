@@ -95,4 +95,9 @@ public class StringCalculatorTest {
         assertThrows(NumberFormatException.class, () -> StringCalculator.add("3,\n"), "when the input string has consecutive separators(without an integer between them), StringCalculator.add should throw NumberFormatException");
         assertThrows(NumberFormatException.class, () -> StringCalculator.add("\n,5"), "when the input string has consecutive separators(without an integer between them), StringCalculator.add should throw NumberFormatException");
     }
+
+    @Test
+    void addToSumNumbersWithSeparatorDefinition() {
+        assertEquals(10, StringCalculator.add("//;\n2;3;5"), "when the input string has separator definition, StringCalculator.add should consider the separator in the definition");
+    }
 }
