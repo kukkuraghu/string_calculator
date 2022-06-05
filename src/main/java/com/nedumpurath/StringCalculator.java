@@ -1,6 +1,7 @@
 package com.nedumpurath;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -20,7 +21,9 @@ public class StringCalculator {
 
         var componentList = List.of(numbersString.split(delimiter, -1));//don't eliminate trailing empty strings - set the limit -1
 
-        return componentList.stream().map(component -> {
+        var negativeNumbers = new ArrayList<Integer>();
+
+        var sum = componentList.stream().map(component -> {
             //strip the surrounding whitespaces from each component
             var strippedComponent = component.strip();
 
@@ -32,10 +35,15 @@ public class StringCalculator {
                 throw new ArithmeticException();
             }
 
-            return parseInt(strippedComponent);
-
+            var number = componentBigInteger.intValue();
+            if (number < 0) negativeNumbers.add(number);
+            return number;
         }).reduce(0, Math::addExact); //addExact will throw ArithmeticException, if the sum is more than MAXVALUE or less than MINVALUE*/
+
+        if (!negativeNumbers.isEmpty()) throw new NumberFormatException();
+        return sum;
     }
+
 
     private  static Boolean moreThanMaxInt(BigInteger number) {
         return number.compareTo(new BigInteger(String.valueOf(Integer.MAX_VALUE))) > 0;
