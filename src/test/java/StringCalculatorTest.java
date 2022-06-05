@@ -116,5 +116,7 @@ public class StringCalculatorTest {
     @Test
     void addToSumNumbersWithNegativeNumbersThrowsException() {
         assertThrows(Exception.class, () -> StringCalculator.add("//;\n2;-5"), "when the input string has negative numbers, StringCalculator.add throws exception");
+        var exception = assertThrows(Exception.class, () -> StringCalculator.add("//;\n2;-5;7;-8"), "when the input string has negative numbers, StringCalculator.add throws exception");
+        assertEquals("negatives not allowed.  The input string has the following negative numbers -5,-8", exception.getMessage());
     }
 }
