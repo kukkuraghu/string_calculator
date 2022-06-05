@@ -107,5 +107,6 @@ public class StringCalculatorTest {
         assertEquals(0, StringCalculator.add("//;\n   "), "when the input string has separator definition and the numbers String is blank, StringCalculator.add should return 0");
         assertEquals(0, StringCalculator.add("//;\n  \t "), "when the input string has separator definition and the numbers String is blank, StringCalculator.add should return 0");
         assertEquals(0, StringCalculator.add("//;\n  \n "), "when the input string has separator definition and the numbers String is blank, StringCalculator.add should return 0");
+        assertEquals(7, StringCalculator.add("//\n\n2\n5"), "when the input string has separator definition and the numbers String is empty, StringCalculator.add should return 0");
     }
 }
