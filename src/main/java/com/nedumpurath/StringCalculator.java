@@ -2,14 +2,27 @@ package com.nedumpurath;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static java.lang.Integer.parseInt;
 
 public class StringCalculator {
     public static int add(String textInput) {
-        if (textInput.isBlank()) return 0;
+        var delimiter = "[,|\n]";
+        var numbersString = textInput;
+        if (startsWithDelimiterDefinition(textInput)) {
+            var pattern = Pattern.compile("//(.)\n(.*)");
+            var matchedGroups = pattern.matcher(textInput);
+            if (matchedGroups.find()) {
+                delimiter = matchedGroups.group(1);
+                numbersString = matchedGroups.group(2);
+            }
 
-        var componentList = List.of(textInput.split("[,\n]", -1));//don't eliminate trailing empty strings - set the limit -1
+        }
+
+        if (numbersString.isBlank()) return 0;
+
+        var componentList = List.of(numbersString.split(delimiter, -1));//don't eliminate trailing empty strings - set the limit -1
 
         return componentList.stream().map(component -> {
             //strip the surrounding whitespaces from each component
@@ -34,5 +47,9 @@ public class StringCalculator {
 
     private static Boolean lessThanMinInt(BigInteger number) {
         return number.compareTo(new BigInteger(String.valueOf(Integer.MIN_VALUE))) < 0;
+    }
+
+    private static Boolean startsWithDelimiterDefinition(String inputString) {
+        return inputString.matches("//.\n.*");
     }
 }
