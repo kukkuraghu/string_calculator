@@ -4,8 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import static java.lang.Integer.parseInt;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
     public static int add(String textInput) {
@@ -40,7 +39,7 @@ public class StringCalculator {
             return number;
         }).reduce(0, Math::addExact); //addExact will throw ArithmeticException, if the sum is more than MAXVALUE or less than MINVALUE*/
 
-        if (!negativeNumbers.isEmpty()) throw new NumberFormatException();
+        if (!negativeNumbers.isEmpty()) throw new NumberFormatException("negatives not allowed.  The input string has the following negative numbers " + negativeNumbers.stream().map(Number::toString).collect(Collectors.joining(",")));
         return sum;
     }
 
