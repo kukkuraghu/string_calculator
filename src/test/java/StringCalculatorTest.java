@@ -88,7 +88,10 @@ public class StringCalculatorTest {
         assertEquals(0, StringCalculator.add("\n"), "when the input string has only white spaces(even when a white space is considered as  a separator) and no integers, StringCalculator.add should return 0");
         assertThrows(NumberFormatException.class, () -> StringCalculator.add(" , "), "when the input string has only a separator and no integers, StringCalculator.add should throw NumberFormatException");
         assertThrows(NumberFormatException.class, () -> StringCalculator.add(" , 2"), "when the input string starts with a separator(with or without whitespaces around it), StringCalculator.add should throw NumberFormatException");
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add(",2"), "when the input string starts with a non white space separator(with or without whitespaces around it), StringCalculator.add should throw NumberFormatException");
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add("2,"), "when the input string ends with a non white space separator(with or without whitespaces around it), StringCalculator.add should throw NumberFormatException");
         assertThrows(NumberFormatException.class, () -> StringCalculator.add("3\n"), "when the input string ends with a separator(with or without whitespaces around it), StringCalculator.add should throw NumberFormatException");
+        assertThrows(NumberFormatException.class, () -> StringCalculator.add("\n3"), "when the input string starts with a separator(with or without whitespaces around it), StringCalculator.add should throw NumberFormatException");
         assertThrows(NumberFormatException.class, () -> StringCalculator.add("3,\n"), "when the input string has consecutive separators(without an integer between them), StringCalculator.add should throw NumberFormatException");
         assertThrows(NumberFormatException.class, () -> StringCalculator.add("\n,5"), "when the input string has consecutive separators(without an integer between them), StringCalculator.add should throw NumberFormatException");
     }
