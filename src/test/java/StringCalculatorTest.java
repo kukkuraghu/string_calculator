@@ -74,4 +74,11 @@ public class StringCalculatorTest {
         assertThrows(ArithmeticException.class, () -> StringCalculator.add("2, 3, 4, 2147483647, 5"), "if the input string has integers whose sum  is not in the integers range supported, the Add method should throw ArithmeticException");
         assertThrows(ArithmeticException.class, () -> StringCalculator.add("2, 3, 5, 2147483648"), "if the input string has integers whose sum  is not in the integers range supported or has integers who are outside the integer range, the Add method should throw ArithmeticException");
     }
+
+    @Test
+    void addToSumNumbersWithCommaAndNewLineAsSeparators() {
+        assertEquals(10, StringCalculator.add("2,3\n5"), "when the input string has only integers separated by comma or newline, StringCalculator.add should return the sum of all the integers");
+        assertEquals(8, StringCalculator.add("2\n 6"), "when the input string has two integers separated by comma or newline, StringCalculator.add should return the sum of both the integers");
+        assertEquals(170, StringCalculator.add("2,3,5, 100 \n  50 , \t 10"), "when the input string has more than two integers separated by comma or newline, StringCalculator.add should return the sum of all the integers");
+    }
 }
