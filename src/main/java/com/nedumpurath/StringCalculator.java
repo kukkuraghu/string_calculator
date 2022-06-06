@@ -18,7 +18,7 @@ public class StringCalculator {
 
         if (numbersString.isBlank()) return 0;
 
-        var componentList = List.of(numbersString.split(delimiter, -1));//don't eliminate trailing empty strings - set the limit -1
+        var componentList = List.of(numbersString.split(delimiter, -1));//don't eliminate trailing empty strings - set the limit -1. Need to catch blank input components
 
         var negativeNumbers = new ArrayList<Integer>();
 
@@ -26,7 +26,7 @@ public class StringCalculator {
             //strip the surrounding whitespaces from each component
             var strippedComponent = component.strip();
 
-            //if the strippedComponent is not an integer, the following will throw a NumberFormatException
+            //if the strippedComponent is not an integer, the following will throw a NumberFormatException - this will throw exception for blank components also
             var componentBigInteger = new BigInteger(strippedComponent);
 
             //throw ArithmeticException, if the number is not in the integer range supported
